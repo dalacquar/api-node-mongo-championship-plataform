@@ -8,6 +8,8 @@ router.route("/teams/:id").get((req, res) => teamsController.get(req, res));
 router.route("/teams/:id").delete((req, res) => teamsController.delete(req, res));
 router.route("/teams/:id").put((req, res) => teamsController.update(req, res));
 
+router.route("/teams/accept-invite").post((req, res) => teamsController.addUserToTeam(req, res));
+
 
 
 module.exports = router;
