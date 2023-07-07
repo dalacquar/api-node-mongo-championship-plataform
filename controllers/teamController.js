@@ -74,14 +74,14 @@ const teamController = {
             console.log(error);
         }
     },
-    addTagToTutorial: async (req, res) => {
+    addUserToTeam: async (req, res) => {
         try {
-            const owner = req.body.owner; //PEGAR NO TOKEN DO USER
-            const user = req.body.user;
-            const team = req.body.team;
+            const user_id = req.body.user_id;
+            const team_id = req.body.team_id;
+            console.log(team_id)
 
-            const updatedTeam = await TeamModel.findByIdAndUpdate(team._id, 
-                { $push: { players: user._id } },
+            const updatedTeam = await TeamModel.findByIdAndUpdate(team_id, 
+                { $push: { players: user_id } },
                 { new: false, useFindAndModify: false }
               );
 
