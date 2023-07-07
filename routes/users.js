@@ -8,4 +8,6 @@ router.route("/users/:id").get((req, res) => userController.get(req, res));
 router.route("/users/:id").delete((req, res) => userController.delete(req, res));
 router.route("/users/:id").put((req, res) => userController.update(req, res));
 
+router.route("/users/:id/teams/").get((req, res) => userController.getTeamsByUser(req, res));
+
 module.exports = router;

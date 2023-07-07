@@ -74,15 +74,27 @@ const teamController = {
             console.log(error);
         }
     },
-    getTeamsByUser: async (req, res) => {
+    addTagToTutorial: async (req, res) => {
         try {
-            const { id } = req.params;
-            const user = await UserModel.findById(id).populate('teams');
-            res.json(user.posts);
+            const owner = req.body.owner; //PEGAR NO TOKEN DO USER
+            const user = req.body.user;
+            const team = req.body.team;
+
+            const updatedTeam = await TeamModel.findByIdAndUpdate(team._id, 
+                { $push: { players: user._id } },
+                { new: false, useFindAndModify: false }
+              );
+
+            if (!updatedTeam) {
+                res.status(404).json({ msg: "Time não encontrado" })
+                return
+            }
+
+            res.status(200).json({ updatedTeam, msg: "Usuario adicionado ao time com sucesso!" });
         } catch (error) {
             console.log(error);
         }
-    },
+    }
 }
 
 module.exports = teamController;

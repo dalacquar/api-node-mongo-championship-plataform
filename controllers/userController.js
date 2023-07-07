@@ -76,11 +76,11 @@ const userController = {
             console.log(error);
         }
     },
-    teamsByUser: async (req, res) => {
+    getTeamsByUser: async (req, res) => {
         try {
             const { id } = req.params;
             const user = await UserModel.findById(id).populate('teams');
-            res.json(user.posts);
+            res.json(user.teams);
         } catch (error) {
             console.log(error);
         }
